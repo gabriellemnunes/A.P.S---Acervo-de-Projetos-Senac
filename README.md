@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
   # A.P.S - Acervo de Projetos Senac
 
