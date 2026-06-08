@@ -1,12 +1,12 @@
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0e8a5e23-7c39-4304-811c-8d0ee9dc98fd" alt="APS Logo" width="400">
-  
+</p>
+
 # 📘 APS Frontend – Acervo de Projetos Senac
 
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green)
-![React](https://img.shields.io/badge/React-19-blue)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38BDF8)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 
 O **APS Frontend** é a interface de usuário do **Acervo de Projetos Senac**, uma plataforma desenvolvida para armazenar, organizar e disponibilizar Projetos Integradores de forma estruturada. O sistema foi criado para evitar que projetos acadêmicos sejam esquecidos após sua apresentação, permitindo que alunos, professores e coordenação acompanhem sua evolução e reutilizem conhecimentos produzidos dentro da instituição.
 
@@ -98,8 +98,8 @@ Participação em:
 
 #### 📑 Relatórios Automatizados
 Exportação em:
-- PDF.
-- Excel (.xlsx).
+- PDF
+- Excel (.xlsx)
 
 Com indicadores sobre:
 - Projetos por curso.
@@ -116,12 +116,13 @@ Com indicadores sobre:
 
 ### Frontend Core
 
+- **TypeScript** — Superset do JavaScript que adiciona tipagem estática e maior segurança ao desenvolvimento.
 - **React 19** — Biblioteca JavaScript para construção de interfaces modernas e reativas.
 - **Vite** — Ferramenta de build rápida e otimizada para desenvolvimento e produção.
 
 ### Estilização
 
-- **Tailwind CSS v4** — Framework CSS utility-first para construção de interfaces modernas e responsivas.
+- **CSS3** — Linguagem de estilização utilizada para construção da interface da aplicação.
 
 ### Roteamento
 
@@ -161,8 +162,8 @@ Antes de começar, certifique-se de possuir:
 ### Clone o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/aps-frontend.git
-cd aps-frontend
+git clone https://github.com/gabriellemnunes/A.P.S---Acervo-de-Projetos-Senac.git
+cd A.P.S---Acervo-de-Projetos-Senac
 ```
 
 ### Instale as Dependências
@@ -171,10 +172,10 @@ cd aps-frontend
 npm install
 ```
 
-ou
+### Execute o Projeto
 
 ```bash
-yarn install
+npm run dev
 ```
 
 ---
@@ -187,19 +188,11 @@ yarn install
 npm run dev
 ```
 
-Inicia o servidor local de desenvolvimento.
-
----
-
 ### Produção
 
 ```bash
 npm run build
 ```
-
-Gera a versão otimizada para produção.
-
----
 
 ### Lint
 
@@ -207,17 +200,11 @@ Gera a versão otimizada para produção.
 npm run lint
 ```
 
-Executa a análise estática do código.
-
----
-
 ### Preview
 
 ```bash
 npm run preview
 ```
-
-Visualiza localmente a versão de produção.
 
 ---
 
@@ -225,17 +212,10 @@ Visualiza localmente a versão de produção.
 
 O APS utiliza autenticação baseada em **JWT (JSON Web Token)**.
 
-### Recursos
-
-- Login seguro.
-- Armazenamento do token de acesso.
-- Proteção de rotas privadas.
-- Controle de permissões por perfil.
-
 ### Perfis de Usuário
 
 | Perfil | Permissão |
-|----------|------------|
+|---------|------------|
 | ROLE_ALUNO | Acesso aos projetos e eventos |
 | ROLE_MENTOR | Orientação e validação de projetos |
 | ROLE_ADMIN | Administração completa da plataforma |
@@ -249,4 +229,3 @@ O painel administrativo e funcionalidades de gestão só podem ser acessados por
 ## 🎓 Objetivo do Projeto
 
 O **Acervo de Projetos Senac (APS)** tem como objetivo preservar, organizar e estimular a continuidade dos Projetos Integradores desenvolvidos pelos estudantes, promovendo colaboração, inovação e compartilhamento de conhecimento dentro da comunidade acadêmica.
->>>>>>> 8d6d07b05ce71f7c508dc8e12dbc0e0927a5e2e5
