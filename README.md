@@ -1,4 +1,7 @@
-faça o passo a passo para o meu read me, # 📘 APS Frontend – Acervo de Projetos Senac
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0e8a5e23-7c39-4304-811c-8d0ee9dc98fd" alt="APS Logo" width="400">
+  
+# 📘 APS Frontend – Acervo de Projetos Senac
 
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green)
 ![React](https://img.shields.io/badge/React-19-blue)
