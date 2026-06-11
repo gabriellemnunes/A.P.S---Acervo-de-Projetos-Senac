@@ -19,10 +19,38 @@ export function CadastroPage() {
 
   const set = (field: string, value: string) => setForm((f) => ({ ...f, [field]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: form.nome,
+        email: form.email,
+        password: form.password,
+        matricula: form.matricula,
+        perfil: profile || "aluno",
+      }),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      console.error(erro);
+      alert("Erro ao criar conta.");
+      return;
+    }
+
+    alert("Conta criada com sucesso!");
     navigate("/verificar-email");
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao conectar com o servidor.");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center px-[16px] py-[32px] font-['Inter',sans-serif]" style={{ background: "linear-gradient(135deg, #daeaff 0%, #f0f3f9 45%, #fdecd6 100%)" }}>
