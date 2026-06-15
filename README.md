@@ -1,228 +1,245 @@
+# 📘 A.P.S. — Acervo de Projetos Senac
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0e8a5e23-7c39-4304-811c-8d0ee9dc98fd" alt="APS Logo" width="400">
 </p>
 
-# 📘 APS Frontend – Acervo de Projetos Senac
-
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi)
+![MySQL](https://img.shields.io/badge/MySQL-Database-orange?logo=mysql)
 
-O **APS Frontend** é a interface de usuário do **Acervo de Projetos Senac**, uma plataforma desenvolvida para armazenar, organizar e disponibilizar Projetos Integradores de forma estruturada. O sistema foi criado para evitar que projetos acadêmicos sejam esquecidos após sua apresentação, permitindo que alunos, professores e coordenação acompanhem sua evolução e reutilizem conhecimentos produzidos dentro da instituição.
+## 📌 Sobre o Projeto
 
-Construído com tecnologias modernas e foco na experiência do usuário, o APS oferece uma navegação intuitiva, responsiva e acessível para todos os envolvidos no processo acadêmico.
+O A.P.S. (Acervo de Projetos Senac) é uma plataforma desenvolvida para armazenar, organizar e acompanhar projetos acadêmicos desenvolvidos por alunos do Senac.
 
----
-
-## ✨ Visão Geral & Destaques
-
-O APS é mais do que um repositório acadêmico; é um ambiente colaborativo que conecta:
-
-### 👨‍🎓 Alunos
-- Cadastro e gerenciamento de Projetos Integradores.
-- Compartilhamento de ideias e evolução dos projetos.
-- Acesso a metodologias e eventos acadêmicos.
-
-### 👨‍🏫 Professores/Mentores
-- Acompanhamento de equipes.
-- Validação de etapas dos projetos.
-- Divulgação de eventos e oportunidades.
-
-### 👨‍💼 Coordenação
-- Monitoramento dos projetos em andamento.
-- Gestão de usuários.
-- Geração de relatórios gerenciais e indicadores acadêmicos.
+O sistema busca evitar a perda de conhecimento produzido nos Projetos Integradores, permitindo que alunos, professores e coordenadores possam registrar, acompanhar e consultar projetos de forma estruturada.
 
 ---
 
-## 🚀 Principais Funcionalidades
+## 🎯 Objetivo
 
-### Para Alunos
+Criar uma plataforma capaz de:
 
-#### 📂 Cadastro e Gestão de Projetos
-- Criação, edição e exclusão de projetos.
-- Definição de título, descrição, integrantes, orientador e área de conhecimento.
-- Configuração de projetos públicos ou privados.
-
-#### 📋 Quadro Kanban de Incubação
-- Pré-incubação.
-- Incubação Ativa.
-- Em Validação.
-- Desincubado.
-
-#### 🔄 Evolução Controlada
-A mudança de status exige:
-- Registro de mini-reunião.
-- Comentário do mentor.
-- Checklist preenchido.
-
-#### ❤️ Interação Acadêmica
-- Curtidas em projetos.
-- Comentários.
-- Compartilhamento de conhecimento.
-
-#### 🎯 Desbloqueio Progressivo de Metodologias
-- **4 dias:** Personas e definição de papéis.
-- **10 dias:** Pitch Twitter e validação.
-- **20 dias:** Cronograma e matriz de riscos.
-- **30 dias:** Kit de apresentação e simulação de banca.
-
-#### 📅 Eventos Acadêmicos
-Participação em:
-- Hackathons.
-- Ideathons.
-- Workshops.
-- Palestras.
+* Armazenar projetos acadêmicos.
+* Facilitar o acompanhamento por professores e mentores.
+* Permitir avaliações e feedbacks.
+* Centralizar formulários e registros acadêmicos.
+* Preservar o histórico dos projetos desenvolvidos.
 
 ---
 
-### Painel Administrativo
+## 👥 Perfis de Usuário
 
-#### 📊 Dashboard
-- Quantidade de projetos por curso.
-- Distribuição por status.
-- Projetos ativos e inativos.
-- Tempo médio de incubação.
-- Projetos abandonados.
+O sistema possui três perfis principais:
 
-#### 🛠️ Gestão de Entidades (CRUD)
+### 👨‍🎓 Aluno
 
-##### Usuários
-- Cadastro e gerenciamento de alunos e professores.
+* Cadastro na plataforma.
+* Login no sistema.
+* Visualização de projetos.
+* Participação em agendamentos.
 
-##### Projetos
-- Controle completo dos projetos cadastrados.
+### 👨‍🏫 Professor
 
-##### Eventos
-- Gerenciamento de eventos acadêmicos.
+* Login no sistema.
+* Avaliação de projetos.
+* Registro de feedbacks.
 
-#### 📑 Relatórios Automatizados
-Exportação em:
-- PDF
-- Excel (.xlsx)
+### 👨‍💼 Coordenador
 
-Com indicadores sobre:
-- Projetos por curso.
-- Status dos projetos.
-- Tempo médio de incubação.
-- Projetos inativos.
-
-#### 🔒 Controle de Acesso
-- Área administrativa restrita a usuários autorizados.
+* Criação e gerenciamento de formulários.
+* Acompanhamento de projetos.
+* Gestão acadêmica.
 
 ---
 
-## 💻 Tecnologias Utilizadas
+## 🚀 Funcionalidades Implementadas
 
-### Frontend Core
+### Autenticação
 
-- **TypeScript** — Superset do JavaScript que adiciona tipagem estática e maior segurança ao desenvolvimento.
-- **React 19** — Biblioteca JavaScript para construção de interfaces modernas e reativas.
-- **Vite** — Ferramenta de build rápida e otimizada para desenvolvimento e produção.
+* Cadastro de usuários.
+* Login utilizando e-mail e senha.
+* Geração de token JWT.
+* Controle de perfis (aluno, professor e coordenador).
 
-### Estilização
+### Projetos
 
-- **CSS3** — Linguagem de estilização utilizada para construção da interface da aplicação.
+* Cadastro de projetos.
+* Consulta de projetos.
+* Atualização de projetos.
+* Exclusão de projetos.
 
-### Roteamento
+### Mentores
 
-- **React Router DOM v7** — Gerenciamento das rotas da aplicação.
+* Cadastro de mentores.
+* Consulta de mentores.
 
-### Formulários & Validação
+### Agendamentos
 
-- **Formik** — Gerenciamento de formulários.
-- **Yup** — Validação de dados.
+* Registro de agendamentos entre alunos e mentores.
 
-### Requisições API
+### Avaliações
 
-- **Axios** — Cliente HTTP para comunicação com o backend.
+* Registro de avaliações realizadas por professores.
 
-### Estado Global
+### Formulários
 
-- **React Context API** — Gerenciamento de autenticação e estado da aplicação.
-
-### Visualização de Dados
-
-- **Chart.js**
-- **React Chart.js 2**
-
-### Ícones
-
-- **React Icons**
+* Cadastro de formulários.
+* Gerenciamento de campos dos formulários.
 
 ---
 
-## ⚙️ Pré-requisitos e Instalação
+## 🛠 Tecnologias Utilizadas
 
-Antes de começar, certifique-se de possuir:
+### Frontend
 
-- Node.js 18+
-- npm ou Yarn
+* React
+* TypeScript
+* React Router
+* Tailwind CSS
+* Vite
 
-### Clone o Repositório
+### Backend
 
-```bash
-git clone https://github.com/gabriellemnunes/A.P.S---Acervo-de-Projetos-Senac.git
-cd A.P.S---Acervo-de-Projetos-Senac
-```
+* Python
+* FastAPI
+* SQLAlchemy
+* JWT Authentication
+* Passlib
+* Uvicorn
 
-### Instale as Dependências
+### Banco de Dados
+
+* MySQL
+
+### Controle de Versão
+
+* Git
+* GitHub
+
+---
+
+## 🗄 Estrutura do Banco de Dados
+
+O banco de dados utilizado é o MySQL e possui as seguintes tabelas:
+
+* usuarios
+* projetos
+* mentores
+* agendamentos
+* avaliacoes
+* formularios
+* campos_formulario
+
+### Principais Relacionamentos
+
+* Um usuário pode criar vários projetos.
+* Um projeto pode receber várias avaliações.
+* Um mentor pode possuir vários agendamentos.
+* Um formulário pode possuir vários campos.
+* Um coordenador pode criar vários formulários.
+
+---
+
+## 🔑 API REST
+
+O backend disponibiliza endpoints para:
+
+### Autenticação
+
+* POST /auth/register
+* POST /auth/login
+
+### Projetos
+
+* GET /projetos
+* POST /projetos
+* GET /projetos/{id}
+* PUT /projetos/{id}
+* DELETE /projetos/{id}
+
+### Mentores
+
+* GET /mentores
+* POST /mentores
+
+### Agendamentos
+
+* GET /agendamentos
+* POST /agendamentos
+
+### Avaliações
+
+* GET /avaliacoes
+* POST /avaliacoes
+
+### Formulários
+
+* GET /formularios
+* POST /formularios
+
+---
+
+## ⚙️ Instalação
+
+### Frontend
 
 ```bash
 npm install
+npm run dev
 ```
 
-### Execute o Projeto
+### Backend
 
 ```bash
-npm run dev
+cd backend
+
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
 ```
 
 ---
 
-## 📜 Scripts Disponíveis
+## 🗃 Banco de Dados
 
-### Desenvolvimento
+Crie o banco executando:
 
 ```bash
-npm run dev
+backend/banco.sql
 ```
 
-### Produção
+Configure o arquivo `.env`:
 
-```bash
-npm run build
-```
-
-### Lint
-
-```bash
-npm run lint
-```
-
-### Preview
-
-```bash
-npm run preview
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=sua_senha
+DB_NAME=aps_db
 ```
 
 ---
 
-## 🔒 Autenticação e Autorização
+## 📖 Documentação da API
 
-O APS utiliza autenticação baseada em **JWT (JSON Web Token)**.
+Após iniciar o backend:
 
-### Perfis de Usuário
+```txt
+http://127.0.0.1:8000/docs
+```
 
-| Perfil | Permissão |
-|---------|------------|
-| ROLE_ALUNO | Acesso aos projetos e eventos |
-| ROLE_MENTOR | Orientação e validação de projetos |
-| ROLE_ADMIN | Administração completa da plataforma |
+---
 
-### Rotas Protegidas
+## 🎓 Projeto Acadêmico
 
-O painel administrativo e funcionalidades de gestão só podem ser acessados por usuários autorizados mediante validação de token e permissões.
+Projeto desenvolvido por estudantes do curso de Análise e Desenvolvimento de Sistemas do Senac Pernambuco como atividade integradora, aplicando conceitos de desenvolvimento web, banco de dados, APIs REST, autenticação e versionamento com Git e GitHub.
 
 ---
 
