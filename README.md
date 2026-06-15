@@ -9,27 +9,27 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-orange?logo=mysql)
 
-## 📌 Sobre o Projeto
+---
+
+# 📌 Sobre o Projeto
 
 O A.P.S. (Acervo de Projetos Senac) é uma plataforma desenvolvida para armazenar, organizar e acompanhar projetos acadêmicos desenvolvidos por alunos do Senac.
 
-O sistema busca evitar a perda de conhecimento produzido nos Projetos Integradores, permitindo que alunos, professores e coordenadores possam registrar, acompanhar e consultar projetos de forma estruturada.
+O sistema foi criado com o objetivo de preservar o conhecimento produzido nos Projetos Integradores, permitindo o registro e acompanhamento das iniciativas desenvolvidas pelos estudantes, além de facilitar a comunicação entre alunos, professores e coordenação.
 
 ---
 
-## 🎯 Objetivo
+# 🎯 Objetivos
 
-Criar uma plataforma capaz de:
-
-* Armazenar projetos acadêmicos.
-* Facilitar o acompanhamento por professores e mentores.
-* Permitir avaliações e feedbacks.
-* Centralizar formulários e registros acadêmicos.
-* Preservar o histórico dos projetos desenvolvidos.
+* Centralizar informações sobre projetos acadêmicos.
+* Facilitar o acompanhamento dos projetos desenvolvidos pelos alunos.
+* Disponibilizar uma base organizada para futuras consultas.
+* Aplicar conceitos de desenvolvimento Full Stack utilizando tecnologias modernas.
+* Integrar frontend, backend e banco de dados em uma única aplicação.
 
 ---
 
-## 👥 Perfis de Usuário
+# 👥 Perfis de Usuário
 
 O sistema possui três perfis principais:
 
@@ -37,62 +37,53 @@ O sistema possui três perfis principais:
 
 * Cadastro na plataforma.
 * Login no sistema.
-* Visualização de projetos.
-* Participação em agendamentos.
+* Acesso às funcionalidades disponíveis para estudantes.
 
 ### 👨‍🏫 Professor
 
 * Login no sistema.
-* Avaliação de projetos.
-* Registro de feedbacks.
+* Acompanhamento de projetos e avaliações.
 
 ### 👨‍💼 Coordenador
 
-* Criação e gerenciamento de formulários.
-* Acompanhamento de projetos.
-* Gestão acadêmica.
+* Gerenciamento de informações acadêmicas.
+* Acompanhamento geral da plataforma.
 
 ---
 
-## 🚀 Funcionalidades Implementadas
+# 🚀 Funcionalidades Implementadas
 
-### Autenticação
+### 🔐 Autenticação
 
 * Cadastro de usuários.
 * Login utilizando e-mail e senha.
+* Criptografia de senhas.
 * Geração de token JWT.
-* Controle de perfis (aluno, professor e coordenador).
+* Controle de perfis de usuário.
 
-### Projetos
+### 🗄 Banco de Dados
 
-* Cadastro de projetos.
-* Consulta de projetos.
-* Atualização de projetos.
-* Exclusão de projetos.
+* Integração com MySQL.
+* Persistência de dados de usuários.
+* Estrutura para gerenciamento de projetos, mentores, avaliações, agendamentos e formulários.
 
-### Mentores
+### 🌐 API REST
 
-* Cadastro de mentores.
-* Consulta de mentores.
+* Backend desenvolvido com FastAPI.
+* Endpoints documentados automaticamente através do Swagger.
+* Estrutura CRUD preparada para as principais entidades do sistema.
 
-### Agendamentos
+### 💻 Interface Web
 
-* Registro de agendamentos entre alunos e mentores.
-
-### Avaliações
-
-* Registro de avaliações realizadas por professores.
-
-### Formulários
-
-* Cadastro de formulários.
-* Gerenciamento de campos dos formulários.
+* Interface desenvolvida em React.
+* Navegação por rotas utilizando React Router.
+* Integração entre frontend e backend.
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+# 🛠 Tecnologias Utilizadas
 
-### Frontend
+## Frontend
 
 * React
 * TypeScript
@@ -100,7 +91,7 @@ O sistema possui três perfis principais:
 * Tailwind CSS
 * Vite
 
-### Backend
+## Backend
 
 * Python
 * FastAPI
@@ -109,20 +100,22 @@ O sistema possui três perfis principais:
 * Passlib
 * Uvicorn
 
-### Banco de Dados
+## Banco de Dados
 
 * MySQL
 
-### Controle de Versão
+## Controle de Versão
 
 * Git
 * GitHub
 
 ---
 
-## 🗄 Estrutura do Banco de Dados
+# 🗃 Estrutura do Banco de Dados
 
-O banco de dados utilizado é o MySQL e possui as seguintes tabelas:
+O banco de dados utilizado é o **MySQL**, com o schema denominado **aps_db**.
+
+Principais tabelas:
 
 * usuarios
 * projetos
@@ -135,62 +128,73 @@ O banco de dados utilizado é o MySQL e possui as seguintes tabelas:
 ### Principais Relacionamentos
 
 * Um usuário pode criar vários projetos.
-* Um projeto pode receber várias avaliações.
-* Um mentor pode possuir vários agendamentos.
+* Um usuário pode atuar como mentor.
+* Um projeto pode receber avaliações.
+* Um mentor pode possuir agendamentos.
+* Um coordenador pode criar formulários.
 * Um formulário pode possuir vários campos.
-* Um coordenador pode criar vários formulários.
 
 ---
 
-## 🔑 API REST
-
-O backend disponibiliza endpoints para:
+# 🔑 Principais Endpoints
 
 ### Autenticação
 
-* POST /auth/register
-* POST /auth/login
+```http
+POST /auth/register
+POST /auth/login
+```
 
 ### Projetos
 
-* GET /projetos
-* POST /projetos
-* GET /projetos/{id}
-* PUT /projetos/{id}
-* DELETE /projetos/{id}
+```http
+GET /projetos
+POST /projetos
+GET /projetos/{id}
+PUT /projetos/{id}
+DELETE /projetos/{id}
+```
 
 ### Mentores
 
-* GET /mentores
-* POST /mentores
+```http
+GET /mentores
+POST /mentores
+```
 
 ### Agendamentos
 
-* GET /agendamentos
-* POST /agendamentos
+```http
+GET /agendamentos
+POST /agendamentos
+```
 
 ### Avaliações
 
-* GET /avaliacoes
-* POST /avaliacoes
+```http
+GET /avaliacoes
+POST /avaliacoes
+```
 
 ### Formulários
 
-* GET /formularios
-* POST /formularios
+```http
+GET /formularios
+POST /formularios
+```
 
 ---
 
-## ⚙️ Instalação
+# ⚙️ Instalação
 
-### Frontend
+## Frontend
 
 ```bash
 npm install
 npm run dev
 ```
 
-### Backend
+## Backend
 
 ```bash
 cd backend
@@ -207,9 +211,9 @@ uvicorn app.main:app --reload
 
 ---
 
-## 🗃 Banco de Dados
+# 🗄 Configuração do Banco
 
-Crie o banco executando:
+Execute o script:
 
 ```bash
 backend/banco.sql
@@ -227,9 +231,9 @@ DB_NAME=aps_db
 
 ---
 
-## 📖 Documentação da API
+# 📖 Documentação da API
 
-Após iniciar o backend:
+Após iniciar o backend, a documentação pode ser acessada em:
 
 ```txt
 http://127.0.0.1:8000/docs
@@ -237,12 +241,6 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 🎓 Projeto Acadêmico
+# 🎓 Projeto Acadêmico
 
-Projeto desenvolvido por estudantes do curso de Análise e Desenvolvimento de Sistemas do Senac Pernambuco como atividade integradora, aplicando conceitos de desenvolvimento web, banco de dados, APIs REST, autenticação e versionamento com Git e GitHub.
-
----
-
-## 🎓 Objetivo do Projeto
-
-O **Acervo de Projetos Senac (APS)** tem como objetivo preservar, organizar e estimular a continuidade dos Projetos Integradores desenvolvidos pelos estudantes, promovendo colaboração, inovação e compartilhamento de conhecimento dentro da comunidade acadêmica.
+Projeto desenvolvido por estudantes do curso de Análise e Desenvolvimento de Sistemas do Senac Pernambuco, com o objetivo de aplicar conceitos de desenvolvimento web, APIs REST, autenticação, banco de dados relacionais e versionamento de código utilizando Git e GitHub.
