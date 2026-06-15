@@ -18,14 +18,42 @@ export function LoginPage() {
     coordenador: { label: "Coordenador", icon: Settings, color: "bg-[#8200db]", textColor: "text-[#8200db]" },
   }[profile as keyof typeof profileInfo];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Navega diretamente para o dashboard correspondente ao perfil selecionado
-    if (profile === "aluno") navigate("/aluno");
-    else if (profile === "professor") navigate("/professor");
-    else if (profile === "coordenador") navigate("/coordenador");
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!response.ok) {
+      alert("E-mail ou senha inválidos.");
+      return;
+    }
+
+    const data = await response.json();
+
+    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+    const perfilUsuario = data.usuario?.perfil || profile;
+
+    if (perfilUsuario === "aluno") navigate("/aluno");
+    else if (perfilUsuario === "professor") navigate("/professor");
+    else if (perfilUsuario === "coordenador") navigate("/coordenador");
     else navigate("/selecionar-perfil");
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao conectar com o servidor.");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center px-[16px] font-['Inter',sans-serif]" style={{ background: "linear-gradient(135deg, #daeaff 0%, #f0f3f9 45%, #fdecd6 100%)" }}>
