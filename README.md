@@ -185,37 +185,115 @@ POST /formularios
 
 ---
 
-# ⚙️ Instalação
+# ⚙️ Como Executar o Projeto
 
-## Frontend
+## Pré-requisitos
+
+Antes de iniciar o projeto, é necessário ter instalado:
+
+* Node.js
+* npm
+* Python 3.11 ou superior
+* MySQL
+* Git
+
+---
+
+## 📥 Clonando o Repositório
 
 ```bash
-npm install
-npm run dev
+git clone https://github.com/SEU-USUARIO/aps-frontend.git
 ```
 
-## Backend
+Entre na pasta do projeto:
 
 ```bash
-cd backend
-
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-pip install -r requirements.txt
-
-uvicorn app.main:app --reload
+cd aps-frontend
 ```
 
 ---
 
-# 🗄 Configuração do Banco
+## 💻 Executando o Frontend
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+O frontend ficará disponível em:
+
+```txt
+http://localhost:5173
+```
+
+---
+
+## ⚙️ Executando o Backend
+
+Acesse a pasta do backend:
+
+```bash
+cd backend
+```
+
+Crie o ambiente virtual:
+
+```bash
+python -m venv venv
+```
+
+Ative o ambiente virtual:
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### Linux / MacOS
+
+```bash
+source venv/bin/activate
+```
+
+Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+Inicie o servidor:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+O backend ficará disponível em:
+
+```txt
+http://127.0.0.1:8000
+```
+
+---
+
+## 🗄 Configuração do Banco de Dados
+
+Crie o banco de dados MySQL:
+
+```sql
+CREATE DATABASE aps_db;
+```
 
 Execute o script:
 
-```bash
+```txt
 backend/banco.sql
 ```
 
@@ -227,6 +305,16 @@ DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=sua_senha
 DB_NAME=aps_db
+```
+
+---
+
+## 📖 Documentação da API
+
+Após iniciar o backend, acesse:
+
+```txt
+http://127.0.0.1:8000/docs
 ```
 
 ---
