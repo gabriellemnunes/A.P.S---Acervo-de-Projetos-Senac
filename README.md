@@ -187,29 +187,24 @@ POST /formularios
 
 # ⚙️ Como Executar o Projeto
 
-## Pré-requisitos
-
-Antes de iniciar o projeto, é necessário ter instalado:
-
-* Node.js
-* npm
-* Python 3.11 ou superior
-* MySQL
-* Git
-
----
-
 ## 📥 Clonando o Repositório
 
 ```bash
-git clone https://github.com/SEU-USUARIO/aps-frontend.git
+git clone https://github.com/gabriellemnunes/A.P.S---Acervo-de-Projetos-Senac.git
+cd A.P.S---Acervo-de-Projetos-Senac
 ```
 
-Entre na pasta do projeto:
+---
 
-```bash
-cd aps-frontend
-```
+## 📋 Pré-requisitos
+
+Antes de executar o projeto, certifique-se de ter instalado:
+
+* Node.js
+* npm
+* Python 3.11+
+* MySQL
+* Git
 
 ---
 
@@ -227,7 +222,7 @@ Inicie o servidor de desenvolvimento:
 npm run dev
 ```
 
-O frontend ficará disponível em:
+O frontend estará disponível em:
 
 ```txt
 http://localhost:5173
@@ -257,7 +252,7 @@ Ative o ambiente virtual:
 venv\Scripts\activate
 ```
 
-### Linux / MacOS
+### Linux / macOS
 
 ```bash
 source venv/bin/activate
@@ -275,7 +270,7 @@ Inicie o servidor:
 uvicorn app.main:app --reload
 ```
 
-O backend ficará disponível em:
+O backend estará disponível em:
 
 ```txt
 http://127.0.0.1:8000
@@ -285,13 +280,13 @@ http://127.0.0.1:8000
 
 ## 🗄 Configuração do Banco de Dados
 
-Crie o banco de dados MySQL:
+Crie o banco de dados:
 
 ```sql
 CREATE DATABASE aps_db;
 ```
 
-Execute o script:
+Execute o script SQL localizado em:
 
 ```txt
 backend/banco.sql
@@ -308,6 +303,17 @@ DB_NAME=aps_db
 ```
 
 ---
+
+## 📖 Documentação da API
+
+Após iniciar o backend, acesse:
+
+```txt
+http://127.0.0.1:8000/docs
+```
+
+A documentação interativa será gerada automaticamente pelo FastAPI.
+
 
 ## 📖 Documentação da API
 
