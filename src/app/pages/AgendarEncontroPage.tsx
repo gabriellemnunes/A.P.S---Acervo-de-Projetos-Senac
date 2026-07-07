@@ -4,6 +4,7 @@ import { Layout, PageHeader, Breadcrumb, Card, Tag } from "../components/Layout"
 import { Calendar, Clock, MapPin, CheckCircle, Video, Building } from "lucide-react";
 import imgProfAnaSilva from "../../imports/DashboardParaRepositorioPiSenac/56d9e68ccff12413f144bdf75269165f5e84005a.png";
 import imgProfCarlosMendes from "../../imports/DashboardParaRepositorioPiSenac/0d5da6ab018faf09b0940ac3e0ab4d6d514c431f.png";
+import { apiFetch } from "../../services/api";
 
 const DIAS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 const DATAS = [14, 15, 16, 17, 18, 19];
@@ -48,12 +49,60 @@ export function AgendarEncontroPage() {
   const isOcupado = (dia: number, hora: string) =>
     ocupados[String(dia)]?.includes(hora) ?? false;
 
-  const handleAgendar = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!diaSelecionado || !horarioSelecionado) return;
+  const handleAgendar = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!diaSelecionado || !horarioSelecionado || !pauta.trim()) return;
+
+  try {
+    // Como ainda não existe seleção de mentor na tela,
+    // usamos o mentor de id 1 por enquanto.
+    const mentorId = 1;
+
+    // Também usamos o primeiro projeto do aluno.
+    const projetosResponse = await apiFetch("/projetos");
+
+    if (!projetosResponse.ok) {
+      throw new Error("Erro ao buscar projetos.");
+    }
+
+    const projetos = await projetosResponse.json();
+
+    if (projetos.length === 0) {
+      alert("Cadastre um projeto antes de agendar.");
+      return;
+    }
+
+    const projetoId = projetos[0].id;
+
+    const dataHora = `2026-04-${String(diaSelecionado).padStart(2, "0")}T${horarioSelecionado}:00`;
+
+    const response = await apiFetch("/agendamentos", {
+      method: "POST",
+      body: JSON.stringify({
+        mentor_id: mentorId,
+        projeto_id: projetoId,
+        data_hora: dataHora,
+        tipo: modalidade,
+        pauta: pauta,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao agendar.");
+    }
+
     setAgendado(true);
-    setTimeout(() => navigate("/aluno"), 2500);
-  };
+
+    setTimeout(() => {
+      navigate("/aluno");
+    }, 1800);
+
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao realizar agendamento.");
+  }
+};
 
   return (
     <Layout role="aluno">

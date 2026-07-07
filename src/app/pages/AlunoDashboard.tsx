@@ -135,6 +135,28 @@ async function carregarProjetos() {
     console.error(error);
   }
 }
+async function excluirProjeto(id: number) {
+  const confirmar = window.confirm(
+    "Tem certeza que deseja excluir este projeto?"
+  );
+
+  if (!confirmar) return;
+
+  try {
+    const response = await apiFetch(`/projetos/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao excluir projeto");
+    }
+
+    carregarProjetos();
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao excluir projeto.");
+  }
+}
 
 const projetosFiltrados = meusProjetos.filter((projeto) =>
   projeto.nome.toLowerCase().includes(busca.toLowerCase())
@@ -221,9 +243,18 @@ const projetosFiltrados = meusProjetos.filter((projeto) =>
                 ))}
             </div>
 
-           <p className="text-[11px] text-[#4A4A6A] mt-[8px]">
+<div className="flex items-center justify-between mt-[8px]">
+  <p className="text-[11px] text-[#4A4A6A]">
     Projeto cadastrado no sistema
-</p>
+  </p>
+
+  <button
+    onClick={() => excluirProjeto(projeto.id)}
+    className="bg-red-500 hover:bg-red-600 text-white text-[11px] px-[10px] py-[5px] rounded-[6px]"
+  >
+    Excluir
+  </button>
+</div>
           </div>
         ))}
       </div>

@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Layout, PageHeader, Breadcrumb, Card } from "../components/Layout";
 import { Plus, Trash2, CheckCircle, GripVertical, FileText, Eye } from "lucide-react";
+import { apiFetch } from "../../services/api";
 
 type TipoCampo = "texto" | "textarea" | "select" | "checkbox" | "arquivo";
+
 
 interface Campo {
   id: string;
@@ -60,11 +62,42 @@ export function PublicarFormularioPage() {
     );
   };
 
-  const handlePublicar = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handlePublicar = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await apiFetch("/formularios", {
+      method: "POST",
+      body: JSON.stringify({
+        titulo,
+        descricao,
+        prazo,
+        turmas: turmasSelecionadas.join(","),
+        publicado: true,
+        campos: campos.map((c) => ({
+          tipo: c.tipo,
+          label: c.label,
+          obrigatorio: c.obrigatorio,
+          opcoes: c.opcoes ?? null,
+        })),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao publicar formulário");
+    }
+
     setPublicado(true);
-    setTimeout(() => navigate("/coordenador"), 2500);
-  };
+
+    setTimeout(() => {
+      navigate("/coordenador");
+    }, 1800);
+
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao publicar formulário.");
+  }
+};
 
   return (
     <Layout role="coordenador">
