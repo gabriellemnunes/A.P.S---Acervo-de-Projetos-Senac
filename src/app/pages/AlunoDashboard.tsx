@@ -115,7 +115,8 @@ function UnlockItem({ title, status, info }: { title: string; status: "unlocked"
 export function AlunoDashboard() {
   const navigate = useNavigate();
   const [meusProjetos, setMeusProjetos] = useState<any[]>([]);
-  useEffect(() => {
+  const [busca, setBusca] = useState("");
+useEffect(() => {
   carregarProjetos();
 }, []);
 
@@ -134,6 +135,11 @@ async function carregarProjetos() {
     console.error(error);
   }
 }
+
+const projetosFiltrados = meusProjetos.filter((projeto) =>
+  projeto.nome.toLowerCase().includes(busca.toLowerCase())
+);
+
   return (
     <Layout role="aluno">
       <PageHeader
@@ -173,16 +179,25 @@ async function carregarProjetos() {
     <p className="font-medium text-[15px] text-[#0a0a0a]">
       Meus Projetos
     </p>
+    <div className="mt-[12px]">
+  <input
+    type="text"
+    placeholder="Pesquisar projeto..."
+    value={busca}
+    onChange={(e) => setBusca(e.target.value)}
+    className="w-full border border-[#d1d5db] rounded-[8px] px-[12px] py-[10px] text-[13px]"
+  />
+</div>
   </div>
 
   <div className="px-[24px] pb-[20px] mt-[12px]">
-    {meusProjetos.length === 0 ? (
+  {projetosFiltrados.length === 0 ? (
       <p className="text-[13px] text-[#4A4A6A]">
         Nenhum projeto cadastrado.
       </p>
     ) : (
       <div className="flex flex-col gap-[10px]">
-        {meusProjetos.map((projeto) => (
+  {projetosFiltrados.map((projeto) => (
           <div
             key={projeto.id}
             className="border border-[#e5e7eb] rounded-[10px] p-[14px]"

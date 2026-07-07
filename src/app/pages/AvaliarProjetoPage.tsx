@@ -1,3 +1,4 @@
+import { apiFetch } from "../../services/api";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Layout, PageHeader, Breadcrumb, Card, Tag } from "../components/Layout";
@@ -112,18 +113,44 @@ export function AvaliarProjetoPage() {
     ? (Object.values(notas).reduce((a, b) => a + b, 0) / Object.values(notas).length).toFixed(1)
     : "–";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!decisao || !feedback.trim()) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!decisao || !feedback.trim()) return;
+
+  try {
+    const response = await apiFetch("/avaliacoes", {
+      method: "POST",
+      body: JSON.stringify({
+        projeto_id: Number(squadSelecionado),
+        inovacao: notas.inovacao ?? 0,
+        viabilidade: notas.viabilidade ?? 0,
+        impacto: notas.impacto ?? 0,
+        execucao: notas.execucao ?? 0,
+        feedback: feedback,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao salvar avaliação");
+    }
+
     setEnviado(true);
+
     setTimeout(() => {
       setSquadSelecionado(null);
       setNotas({});
       setFeedback("");
       setDecisao(null);
       setEnviado(false);
-    }, 2500);
-  };
+      navigate("/professor");
+    }, 1800);
+
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao salvar avaliação.");
+  }
+};
 
   const pendentes = squads.filter((s) => s.pendente).length;
 
