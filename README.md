@@ -280,11 +280,6 @@ http://127.0.0.1:8000
 
 ## 🗄 Configuração do Banco de Dados
 
-Crie o banco de dados:
-
-```sql
-CREATE DATABASE aps_db;
-```
 
 Execute o script SQL localizado em:
 
