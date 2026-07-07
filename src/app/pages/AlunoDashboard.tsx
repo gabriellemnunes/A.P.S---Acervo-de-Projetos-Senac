@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { apiFetch } from "../../services/api";
 import { AlertTriangle, Calendar, MapPin, Users, Lock, CheckCircle, Clock, Heart, MessageCircle, Plus, Link } from "lucide-react";
 import { Layout, PageHeader, Card, Tag } from "../components/Layout";
 import imgProfAnaSilva from "../../imports/DashboardParaRepositorioPiSenac/56d9e68ccff12413f144bdf75269165f5e84005a.png";
@@ -112,11 +114,31 @@ function UnlockItem({ title, status, info }: { title: string; status: "unlocked"
 
 export function AlunoDashboard() {
   const navigate = useNavigate();
+  const [meusProjetos, setMeusProjetos] = useState<any[]>([]);
+  useEffect(() => {
+  carregarProjetos();
+}, []);
+
+async function carregarProjetos() {
+  try {
+    const response = await apiFetch("/projetos");
+
+    if (!response.ok) {
+      throw new Error("Erro ao buscar projetos");
+    }
+
+    const data = await response.json();
+
+    setMeusProjetos(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
   return (
     <Layout role="aluno">
       <PageHeader
         title="Dashboard"
-        subtitle="Bem-vindo, João! Acompanhe seus projetos."
+        subtitle="Bem-vindo(a)! Acompanhe seus projetos."
         action={
           <button
             onClick={() => navigate("/aluno/criar-projeto")}
@@ -146,7 +168,53 @@ export function AlunoDashboard() {
             </button>
           </div>
         </div>
+<Card>
+  <div className="px-[24px] pt-[20px]">
+    <p className="font-medium text-[15px] text-[#0a0a0a]">
+      Meus Projetos
+    </p>
+  </div>
 
+  <div className="px-[24px] pb-[20px] mt-[12px]">
+    {meusProjetos.length === 0 ? (
+      <p className="text-[13px] text-[#4A4A6A]">
+        Nenhum projeto cadastrado.
+      </p>
+    ) : (
+      <div className="flex flex-col gap-[10px]">
+        {meusProjetos.map((projeto) => (
+          <div
+            key={projeto.id}
+            className="border border-[#e5e7eb] rounded-[10px] p-[14px]"
+          >
+            <p className="font-semibold text-[14px] text-[#1A1A2E]">
+              {projeto.nome}
+            </p>
+
+            <p className="text-[12px] text-[#4A4A6A] mt-[4px]">
+              {projeto.descricao}
+            </p>
+
+            <div className="mt-[8px] flex flex-wrap gap-[6px]">
+              {projeto.tags
+                ?.split(",")
+                .map((tag: string) => (
+                  <Tag
+                    key={tag}
+                    label={tag.trim()}
+                  />
+                ))}
+            </div>
+
+           <p className="text-[11px] text-[#4A4A6A] mt-[8px]">
+    Projeto cadastrado no sistema
+</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</Card>
         {/* Kanban */}
         <Card>
           <div className="px-[24px] pt-[20px] pb-[4px]">

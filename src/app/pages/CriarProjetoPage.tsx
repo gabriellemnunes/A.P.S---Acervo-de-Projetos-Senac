@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { apiFetch } from "../../services/api";import { useNavigate } from "react-router";
 import { Layout, PageHeader, Breadcrumb, Card, Tag } from "../components/Layout";
 import {
   CheckCircle, Flame, ClipboardCheck, Archive,
@@ -43,23 +43,50 @@ const ETAPA_MAP: Record<StatusKey, number> = {
 // ── Conteúdo por status ──────────────────────────────────────────
 
 function IncubacaoAtiva() {
-  const [form, setForm] = useState({
-    nome: "EcoApp - Sustentabilidade Urbana",
-    descricao: "Aplicativo para gestão de resíduos recicláveis em comunidades urbanas, conectando moradores a pontos de coleta.",
-    tags: "Sustentabilidade, Mobile, IoT",
-    objetivo: "Reduzir o descarte irregular de resíduos em 30% nas comunidades atendidas.",
-    publicoAlvo: "Moradores de comunidades urbanas de 18 a 45 anos.",
-    tecnologias: "React Native, Node.js, MongoDB",
+const [form, setForm] = useState({
+    nome: "",
+    descricao: "",
+    tags: "",
+    objetivo: "",
+    publicoAlvo: "",
+    tecnologias: "",
     atualizacao: "",
-  });
+});
   const [saved, setSaved] = useState(false);
   const set = (f: string, v: string) => setForm((p) => ({ ...p, [f]: v }));
 
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSave = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await apiFetch("/projetos", {
+      method: "POST",
+      body: JSON.stringify({
+        nome: form.nome,
+        descricao: form.descricao,
+        tags: form.tags,
+        tecnologias: form.tecnologias,
+        objetivo: form.objetivo,
+        publico_alvo: form.publicoAlvo,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao salvar projeto.");
+    }
+
     setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
-  };
+
+setTimeout(() => {
+    setSaved(false);
+    window.location.href = "/aluno";
+}, 1500);
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao cadastrar projeto.");
+  }
+};
 
   const metrics = [
     { label: "Semanas ativas", value: "8", icon: <TrendingUp size={16} /> },
@@ -86,7 +113,7 @@ function IncubacaoAtiva() {
       {saved && (
         <div className="bg-[#f0fdf4] border border-[#b9f8cf] rounded-[12px] p-[14px] flex items-center gap-[10px]">
           <CheckCircle size={16} className="text-[#008236] shrink-0" />
-          <p className="text-[13px] font-medium text-[#008236]">Projeto atualizado com sucesso!</p>
+          <p className="text-[13px] font-medium text-[#008236]">Projeto cadastrado com sucesso!</p>
         </div>
       )}
 
@@ -343,8 +370,8 @@ export function CriarProjetoPage() {
 
   return (
     <Layout role="aluno">
-      <PageHeader title="Meu Projeto" subtitle="Gerencie e acompanhe seu Projeto Integrador" />
-      <Breadcrumb items={[{ label: "Dashboard", path: "/aluno" }, { label: "Meu Projeto" }]} />
+      <PageHeader title="Cadastrar Projeto" subtitle="Cadastre um novo Projeto Integrador" />
+      <Breadcrumb items={[{ label: "Dashboard", path: "/aluno" }, { label: "Cadastrar Projeto" }]} />
 
       <div className="flex-1 overflow-y-auto px-[32px] py-[20px] flex flex-col gap-[20px]">
 

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import { Layout, PageHeader, Card, Tag } from "../components/Layout";
 import { Users, CheckCircle, Clock, AlertTriangle, TrendingUp, BookOpen, Star } from "lucide-react";
-import imgProfAnaSilva from "../../imports/DashboardParaRepositorioPiSenac/56d9e68ccff12413f144bdf75269165f5e84005a.png";
 
 const projetos = [
   { id: "1", nome: "EcoApp - Sustentabilidade Urbana", aluno: "João Silva", etapa: "Pré-incubação", status: "pending", tags: ["Mobile", "IoT"], progresso: 25, ultimaAtt: "25 dias atrás" },
@@ -42,13 +41,8 @@ export function ProfessorDashboard() {
     <Layout role="professor">
       <PageHeader
         title="Dashboard do Professor"
-        subtitle="Bem-vindo, Prof. Ana Silva! Acompanhe seus projetos."
-        action={
-          <div className="flex items-center gap-[10px]">
-            <img src={imgProfAnaSilva} alt="Prof. Ana" className="w-[36px] h-[36px] rounded-full object-cover" />
-            <span className="text-[13px] font-medium text-[#1A1A2E]">Prof. Ana Silva</span>
-          </div>
-        }
+        subtitle="Bem-vindo(a), Prof! Gerencie e acompanhe os projetos dos alunos."
+  
       />
 
       <div className="flex-1 overflow-y-auto px-[32px] py-[24px] flex flex-col gap-[24px]">

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router";
 import { Layout, PageHeader, Card, Tag } from "../components/Layout";
 import { Users, FolderOpen, TrendingUp, AlertTriangle, Plus, BarChart2, CheckCircle, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import { apiFetch } from "../../services/api";
 
 const turmas = [
   { id: 1, nome: "TDS-2025-A", campus: "Campus Pernambuco", professor: "Prof. Ana Silva", alunos: 18, projetos: 14, inativos: 2 },
@@ -32,10 +34,24 @@ const statusConfig: Record<string, { label: string; color: string }> = {
 
 export function CoordenadorDashboard() {
   const navigate = useNavigate();
+  const [totalProjetos, setTotalProjetos] = useState(0);
+useEffect(() => {
+  carregarProjetos();
+}, []);
 
+async function carregarProjetos() {
+  try {
+    const response = await apiFetch("/projetos");
+    const data = await response.json();
+
+    setTotalProjetos(data.length);
+  } catch (e) {
+    console.error(e);
+  }
+}
   const stats = [
     { label: "Turmas ativas", value: "4", icon: Users, color: "bg-[#FDE8C8] text-[#F38305]" },
-    { label: "Total de projetos", value: "34", icon: FolderOpen, color: "bg-[#f0fdf4] text-[#008236]" },
+    { label: "Total de projetos", value: totalProjetos.toString(), icon: FolderOpen, color: "bg-[#f0fdf4] text-[#008236]" },
     { label: "Projetos inativos", value: "7", icon: AlertTriangle, color: "bg-[#fff7ed] text-[#f54900]" },
     { label: "Taxa de conclusão", value: "78%", icon: TrendingUp, color: "bg-[#f3e8ff] text-[#8200db]" },
   ];
